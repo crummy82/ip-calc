@@ -7,6 +7,8 @@
 
 The output is then given directly below the input box
 
+Demo server - [my-calc.crummynet.net](https://my-calc.crummynet.net)
+
 ### To deploy
 1. Clone the repo to a folder you will run the docker compose command from
 2. Edit the compose.yml file for any changes needed (http listen port, etc.)
