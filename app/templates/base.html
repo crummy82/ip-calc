@@ -1,0 +1,91 @@
+<!doctype html>
+
+<HTML lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask IP Calculator Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<BODY>
+    <H1>
+        <center>
+            Handy IP Subnet Calculator
+        </center>
+    </H1>
+    <br>
+    <div class="container d-flex justify-content-center">
+        <form method="POST" action="#">
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="select" id="selectAddress" value="addressSelected">
+                <label class="form-check-label" for="selectAddress">
+                    Info about a specific IP address (format x.x.x.x)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="select" id="selectNetwork" value="netSelected">
+                <label class="form-check-label" for="selectNetwork">
+                    Subnet information. Must enter the network IP for the subnet! (format x.x.x.x/xx)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="select" id="selectDetail" value="detailSelected">
+                <label class="form-check-label" for="selectDetail">
+                    Details of the subnet an IP address is in (format x.x.x.x/xx)
+                </label>
+            </div>
+            <br>
+            <div class="form-outline">
+                <label for="inputText"></label>
+                <input type="text" class="form-control" id="inputText" name="inputText">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="container d-flex justify-content-center">
+        <br>
+        {% if no_selection or no_text %}
+        Please select a radio button option and enter some text!<br />
+        {% endif %}
+
+        {% if invalid_text %}
+        Invalid network or IP address entered!<br />
+        {% endif %}
+
+        {% if ip_info %}
+        Input: {{ input_text }}<br /><br />
+        Loopback IP: {{ ip_info['loopback_ip'] }}<br />
+        Multicast IP: {{ ip_info['multicast_ip'] }}<br />
+        Private IP (not internet-routable): {{ ip_info['private_ip'] }}<br />
+        Reserved IP: {{ ip_info['reserved_ip'] }}<br />
+        {% endif %}
+
+        {% if net_info %}
+        Input: {{ input_text }}<br /><br />
+        Number of host addresses: {{ net_info['num_addresses'] }}<br />
+        Prefix length: {{ net_info['prefix_len'] }}<br />
+        Subnet mask: {{ net_info['netmask'] }}<br />
+        Network address: {{ net_info['net_address'] }}<br />
+        Broadcast address: {{ net_info['broadcast'] }}<br />
+        {% endif %}
+
+        {% if details %}
+        Input: {{ input_text }}<br /><br />
+        IP address: {{ details['ip_addr'] }}<br />
+        Subnet mask: {{ details['mask'] }}<br />
+        Network address: {{ details['net_addr'] }}<br />
+        Broadcast address: {{ details['broadcast'] }}<br />
+        First host IP in this subnet: {{ details['first_host'] }}<br />
+        Last host IP in this subnet: {{ details['last_host'] }}<br />
+        {% endif %}
+
+    </div>
+
+</BODY>
+
+</HTML>
