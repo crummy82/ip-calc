@@ -3,7 +3,6 @@ from ipaddress import IPv4Address, IPv4Interface, IPv4Network
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-app.secret_key = b'lafjw3p908fj3pqa98jfjas;lk f(*JF)(P*DF:LSKEDFJasdfl;akfj)'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
