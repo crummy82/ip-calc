@@ -17,3 +17,5 @@ The output is then given directly below the input box
 2. Run "docker compose down" to bring down the site
 3. Run "docker image rm ip-calc-web" to remove the old image
 4. Run "docker compose up -d" to build the new site and run the web server 
+
+*Note that this runs the Flask development server for simplicity and not a production-ready WSGI server backend*
